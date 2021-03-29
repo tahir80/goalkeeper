@@ -28,13 +28,89 @@
           placeholder: 'Enter your name here'
         }
       }).then(function(res) { // will be called when it is submitted.
-        
+
         botui.message.add({
-          delay: 3000,
+          delay: 2000,
           loading: true,
-          content: "Nice to meet you, "+res.value+"  I’m here to teach you about goal setting, and then help get you started with setting some goals of your own. Are you ready?"
+          content: "Nice to meet you, " + res.value + "  I’m here to teach you about goal setting, and then help get you started with setting some goals of your own. Are you ready?"
+        }).then(function() {
+          botui.action.button({
+            action: [{ // show only one button
+              text: 'Yes, let’s go!',
+              value: 'yes'
+            }]
+          }).then(function() {
+            botui.message.add({
+              delay: 2000,
+              loading: true,
+              content: "We are going to get started by learning about goal setting."
+            }).then(function() {
+              botui.message.add({
+                delay: 2000,
+                loading: true,
+                content: "Goal setting involves deciding on an outcome you’d like to achieve and creating an action plan to get there.."
+              }).then(function() {
+                botui.message.add({
+                  delay: 3000,
+                  loading: true,
+                  content: "Research has shown that merely wishing something is true is not enough to help you achieve it. Setting goals is an important step to take to separate wishful thinking from actionable plans you’re likely to succeed in achieving."
+                }).then(function() {
+                  botui.message.add({
+                    delay: 3000,
+                    loading: true,
+                    content: "Studies have shown that goals can help you achieve things in many areas of your life, from small day-to-day tasks, all the way to long-term career or academic goals."
+                  }).then(function() {
+                    botui.message.add({
+                      delay: 3000,
+                      loading: true,
+                      content: "How often do you consciously set goals to help you achieve what you want in your life?"
+                    }).then(function() {
+                      botui.action.button({
+                        autoHide: false,
+                        action: [{
+                          text: 'Never',
+                          value: 'Never'
+                        }, {
+                          text: 'Sometimes',
+                          value: 'Sometimes'
+                        },
+                        {
+                          text: 'Often',
+                          value: 'Often'
+                        }]
+                      }).then(function(res) { // will be called when a button is clicked.
+                        botui.action.hide(); // hide the button whenever you want.
+                      }).then(function(){
+                        botui.message.add({
+                          delay: 3000,
+                          loading: true,
+                          content: "The point of this training is to show you how you can set effective goals which maximize your chances of being able to achieve them!"
+                        }).then(function(){
+                          botui.message.add({
+                            delay: 3000,
+                            loading: true,
+                            content: "To do this, we’re going to be using the SMART goal criteria. Are you ready to get started?"
+                          }).then(function(){
+                            botui.action.button({
+                              autoHide: false,
+                              action: [{
+                                text: 'I’m ready!',
+                                value: 'I’m ready!'
+                              }]
+                            }).then(function(res) { // will be called when a button is clicked.
+                              botui.action.hide(); // hide the button whenever you want.
+                            })
+                          })
+                        })
+                      })
+                    })
+                  })
+                })
+              })
+            })
+          })
         });
-      });
+      })
     })
   </script>
 </body>
