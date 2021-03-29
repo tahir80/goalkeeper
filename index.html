@@ -7,21 +7,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui-theme-default.css" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
-  <div class="botui-app-container" id="hello-world">
-    <bot-ui></bot-ui>
+  <div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+    </div>
+    <div class="col-sm">
+      <div class="botui-app-container" id="goalkeeper">
+        <bot-ui></bot-ui>
+      </div>
+    </div>
+
+    <div class="col-sm">
+    </div>
   </div>
+</div>
+
   <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/botui/build/botui.js"></script>
   <script>
-    var botui = new BotUI('hello-world');
 
+
+    var botui = new BotUI('goalkeeper');
+    // document.getElementsByClassName('botui-messages-container')[0].style.width="500px";
+
+      //container
+    document.getElementsByClassName('botui-container')[0].style.width="700px";
+    // console.log(document.getElementsByClassName('botui-messages-container'));
     botui.message.add({
       delay: 2000,
       loading: true,
-      content: 'Hi there! I’m the CEL goal setting chatbot. What is your name?'
+      content: 'Hi there! I’m GoalKeeper. What is your name?'
     }).then(function() {
       botui.action.text({
         action: {
