@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>BotUI - Hello World</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui-theme-default.css" />
-  </head>
-  <body>
-    <div class="botui-app-container" id="hello-world">
-      <bot-ui></bot-ui>
-    </div>
-    <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/botui/build/botui.js"></script>
-    <script>
-      var botui = new BotUI('hello-world');
 
-      botui.message.add({
-    loading: true
-  }).then(function (index) {
-    // do some stuff like ajax, etc.
+<head>
+  <meta charset="utf-8">
+  <title>BotUI - Hello World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui-theme-default.css" />
+</head>
 
-    botui.message.update(index, {
-      loading: false,
-      content: 'Hello, this is a message.'
-    });
-  })
-    </script>
-  </body>
+<body>
+  <div class="botui-app-container" id="hello-world">
+    <bot-ui></bot-ui>
+  </div>
+  <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/botui/build/botui.js"></script>
+  <script>
+    var botui = new BotUI('hello-world');
+
+    botui.message.add({
+      delay: 2000,
+      loading: true,
+      content: 'Hi there! I’m the CEL goal setting chatbot. What is your name?'
+    }).then(function() {
+      botui.action.text({
+        action: {
+          placeholder: 'Enter your name here'
+        }
+      }).then(function(res) { // will be called when it is submitted.
+        
+        botui.message.add({
+          delay: 3000,
+          loading: true,
+          content: "Nice to meet you, "+res.value+"  I’m here to teach you about goal setting, and then help get you started with setting some goals of your own. Are you ready?"
+        });
+      });
+    })
+  </script>
+</body>
+
 </html>
