@@ -16,16 +16,16 @@
     <script>
       var botui = new BotUI('hello-world');
 
-     botui.message.add({
-  loading: true
-}).then(function (index) {
-  // do some stuff like ajax, etc.
+      botui.message.add({
+        content: 'Hello World from bot!'
+      }).then(function () { // wait till previous message has been shown.
 
-  botui.message.update(index, {
-    loading: false,
-    content: 'Hello, this is a message.'
-  });
-});
+        botui.message.add({
+          delay: 1000,
+          human: true,
+          content: 'Hello World from human!'
+        });
+      });
     </script>
   </body>
 </html>
